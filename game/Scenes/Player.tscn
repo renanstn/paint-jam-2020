@@ -1,9 +1,28 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Player/scope.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Player/01.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player/02.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "shoot"
+length = 0.3
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Control/Arma:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 3 ) ]
+}
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 2 )
@@ -20,6 +39,7 @@ enabled = true
 cast_to = Vector3( 0, 0, -2000 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/shoot = SubResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -46,3 +66,6 @@ __meta__ = {
 }
 
 [node name="Arma" type="Sprite" parent="CanvasLayer/Control"]
+position = Vector2( 191.269, -254.594 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 4 )
