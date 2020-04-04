@@ -35,11 +35,17 @@ func _physics_process(delta):
 	move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
 	move_and_collide(move_vec * MOVE_SPEED * delta)
 	
-	if Input.is_action_pressed("shoot") and !anim_player.is_playing():
+	if Input.is_action_pressed("shoot"):
+		anim_player.stop()
 		anim_player.play("shoot")
 		var coll = raycast.get_collider()
 		if raycast.is_colliding() and coll.has_method("kill"):
 			coll.kill()
+			
+	if anim_player.current_animation != "walking" \
+		and anim_player.current_animation != "shoot" \
+		and move_vec != Vector3.ZERO:
+			anim_player.play("walking")
 
 func kill():
 	get_tree().reload_current_scene()

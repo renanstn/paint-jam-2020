@@ -14,7 +14,6 @@ func _ready():
 	add_to_group("zombies")
 
 func _physics_process(delta):
-	print(dead)
 	if dead:
 		return
 	if player == null:
