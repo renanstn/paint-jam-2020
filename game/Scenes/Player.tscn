@@ -68,4 +68,4 @@ __meta__ = {
 [node name="Arma" type="Sprite" parent="CanvasLayer/Control"]
 position = Vector2( 191.269, -254.594 )
 scale = Vector2( 4, 4 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )

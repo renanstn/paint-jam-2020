@@ -1,7 +1,7 @@
 extends KinematicBody
 
 export(float, 1, 10) var MOVE_SPEED = 4
-export(float, 0, 1) var MOUSE_SENS = 0.5
+export(float, 0, 1) var MOUSE_SENS = 0.2
 
 onready var anim_player:AnimationPlayer = $AnimationPlayer
 onready var raycast:RayCast = $RayCast
