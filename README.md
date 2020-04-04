@@ -8,16 +8,15 @@ O tema da JAM é informado no momento do início da mesma.
 
 Fora isso, os seguintes *challenges* foram inventados para deixar a brincadeira mais desafiadora:
 
-```
-    Make all your own sound effects using only sounds you can make with your mouth. Onomatopoeia recommended.
-    Only use the default MS Paint color palette.
-    Make a 3D game only using flat images. No meshes except for like the world/levels.
-    Use only comic sans for any in-game font.
-    Draw your assets without a drawing tablet.
-    Try to make the title/logo without any real type/font.
-    Draw all of your art with your eyes closed.
-    Only use the pencil tool.
-```
+- Make all your own sound effects using only sounds you can make with your mouth. Onomatopoeia recommended.
+- Only use the default MS Paint color palette.
+- Make a 3D game only using flat images. No meshes except for like the world/levels.
+- Use only comic sans for any in-game font.
+- Draw your assets without a drawing tablet.
+- Try to make the title/logo without any real type/font.
+- Draw all of your art with your eyes closed.
+- Only use the pencil tool.
+
 
 ## Tema: Tableau I!
 
