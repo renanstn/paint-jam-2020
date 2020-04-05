@@ -2,12 +2,25 @@ extends KinematicBody
 
 export(float, 1, 10) var MOVE_SPEED = 4
 export(float, 0, 1) var MOUSE_SENS = 0.2
+export(int) var MAX_BULLETS = 6
 
 onready var anim_player:AnimationPlayer = $AnimationPlayer
 onready var raycast:RayCast = $RayCast
+onready var audio_player_shoot:AudioStreamPlayer3D = $AudioStreamPlayer3D
+onready var audio_player_walk:AudioStreamPlayer3D = $AudioStreamPlayer3D2
+onready var reload_timer:Timer = $ReloadTimer
+
+var bullets:int = MAX_BULLETS
+var can_fire:bool = true
+var reloading:bool = false
+
+signal bullets(qnt)
+signal reloading(yes)
+signal kill_something
+
 
 func _ready():
-#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	yield(get_tree(), "idle_frame")
 	get_tree().call_group("zombies", "set_player", self)
 
@@ -20,6 +33,11 @@ func _process(delta):
 		get_tree().quit()
 	if Input.is_action_pressed("restart"):
 		kill()
+	if bullets < 1 and not reloading:
+		reloading = true
+		can_fire = false
+		emit_signal("reloading", true)
+		reload_timer.start()
 
 func _physics_process(delta):
 	var move_vec:Vector3 = Vector3()
@@ -35,17 +53,32 @@ func _physics_process(delta):
 	move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
 	move_and_collide(move_vec * MOVE_SPEED * delta)
 	
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and can_fire:
+		bullets -= 1
 		anim_player.stop()
 		anim_player.play("shoot")
+		audio_player_shoot.play()
+		emit_signal("bullets", bullets)
 		var coll = raycast.get_collider()
 		if raycast.is_colliding() and coll.has_method("kill"):
 			coll.kill()
-			
+			emit_signal("kill_something")
+
 	if anim_player.current_animation != "walking" \
 		and anim_player.current_animation != "shoot" \
 		and move_vec != Vector3.ZERO:
 			anim_player.play("walking")
+			if not audio_player_walk.playing:
+				audio_player_walk.play()
+	if move_vec == Vector3.ZERO:
+		audio_player_walk.stop()
 
 func kill():
 	get_tree().reload_current_scene()
+
+
+func _on_ReloadTimer_timeout():
+	bullets = MAX_BULLETS
+	can_fire = true
+	reloading = false
+	emit_signal("reloading", false)
