@@ -6,6 +6,8 @@ A proposta da Paint JAM é desenvolver em 48 horas um game, usando como ferramen
 
 O tema da JAM é informado no momento do início da mesma.
 
+![screenshot](https://github.com/Doc-McCoy/paint-jam-2020/blob/master/screenshots/02.png)
+
 Fora isso, os seguintes *challenges* foram inventados para deixar a brincadeira mais desafiadora:
 
 - Make all your own sound effects using only sounds you can make with your mouth. Onomatopoeia recommended.
@@ -23,3 +25,15 @@ Fora isso, os seguintes *challenges* foram inventados para deixar a brincadeira 
 ![tema](https://github.com/Doc-McCoy/paint-jam-2020/blob/master/tableau.jpg)
 
 Mais informações sobre a JAM [aqui](https://itch.io/jam/paint-jam-2020)
+
+## Screenshots
+
+![01](https://github.com/Doc-McCoy/paint-jam-2020/blob/master/screenshots/01.png)
+
+![02](https://github.com/Doc-McCoy/paint-jam-2020/blob/master/screenshots/02.png)
+
+![03](https://github.com/Doc-McCoy/paint-jam-2020/blob/master/screenshots/03.png)
+
+![04](https://github.com/Doc-McCoy/paint-jam-2020/blob/master/screenshots/04.png)
+
+![05](https://github.com/Doc-McCoy/paint-jam-2020/blob/master/screenshots/05.png)
