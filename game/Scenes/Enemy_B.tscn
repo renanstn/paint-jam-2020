@@ -64,5 +64,5 @@ anims/walking = SubResource( 3 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 material_override = SubResource( 4 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
