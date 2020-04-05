@@ -3,6 +3,7 @@ extends KinematicBody
 export(float, 1, 10) var MOVE_SPEED = 4
 export(float, 0, 1) var MOUSE_SENS = 0.2
 export(int) var MAX_BULLETS = 6
+export(int) var MAX_LIFE = 100
 
 onready var anim_player:AnimationPlayer = $AnimationPlayer
 onready var raycast:RayCast = $RayCast
@@ -10,13 +11,17 @@ onready var audio_player_shoot:AudioStreamPlayer3D = $AudioStreamPlayer3D
 onready var audio_player_walk:AudioStreamPlayer3D = $AudioStreamPlayer3D2
 onready var audio_player_reloading:AudioStreamPlayer3D = $AudioStreamPlayer3D3
 onready var reload_timer:Timer = $ReloadTimer
+onready var can_be_hurt_timer:Timer = $CanBeHurtTimer
 
 var bullets:int = MAX_BULLETS
 var can_fire:bool = true
 var reloading:bool = false
+var can_be_hurt:bool = true
+var life:int = MAX_LIFE
 
 signal bullets(qnt)
 signal reloading(yes)
+signal life(qnt)
 signal kill_something
 
 
@@ -42,6 +47,7 @@ func _process(delta):
 		reload_timer.start()
 
 func _physics_process(delta):
+	# Movimentação ------------------------------------------------------------
 	var move_vec:Vector3 = Vector3()
 	if Input.is_action_pressed("move_forwards"):
 		move_vec.z -= 1
@@ -55,6 +61,7 @@ func _physics_process(delta):
 	move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
 	move_and_collide(move_vec * MOVE_SPEED * delta)
 	
+	# Atirar ------------------------------------------------------------------
 	if Input.is_action_just_pressed("shoot") and can_fire:
 		bullets -= 1
 		anim_player.stop()
@@ -66,6 +73,7 @@ func _physics_process(delta):
 			coll.kill()
 			emit_signal("kill_something")
 
+	# Animação e som ao caminhar ----------------------------------------------
 	if anim_player.current_animation != "walking" \
 		and anim_player.current_animation != "shoot" \
 		and move_vec != Vector3.ZERO:
@@ -76,9 +84,16 @@ func _physics_process(delta):
 	if move_vec == Vector3.ZERO:
 		audio_player_walk.stop()
 
+func take_damage():
+	can_be_hurt = false
+	can_be_hurt_timer.start()
+	life -= 10
+	emit_signal("life", life)
+	if life <= 0:
+		kill()
+
 func kill():
 	get_tree().reload_current_scene()
-
 
 func _on_ReloadTimer_timeout():
 	bullets = MAX_BULLETS
@@ -86,3 +101,6 @@ func _on_ReloadTimer_timeout():
 	reloading = false
 	emit_signal("reloading", false)
 	emit_signal("bullets", bullets)
+
+func _on_CanBeHurtTimer_timeout():
+	can_be_hurt = true

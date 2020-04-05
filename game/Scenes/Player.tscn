@@ -105,4 +105,9 @@ stream = ExtResource( 8 )
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="CanBeHurtTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
+[connection signal="timeout" from="CanBeHurtTimer" to="." method="_on_CanBeHurtTimer_timeout"]
