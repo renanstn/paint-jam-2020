@@ -72,6 +72,7 @@ func _physics_process(delta):
 			anim_player.play("walking")
 			if not audio_player_walk.playing:
 				audio_player_walk.play()
+
 	if move_vec == Vector3.ZERO:
 		audio_player_walk.stop()
 
