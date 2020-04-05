@@ -13,7 +13,6 @@ onready var audio_player_reloading:AudioStreamPlayer3D = $AudioStreamPlayer3D3
 onready var audio_player_hit:AudioStreamPlayer3D = $AudioStreamPlayer3D4
 onready var audio_player_coll:AudioStreamPlayer3D = $AudioStreamPlayer3D5
 onready var audio_player_game_over:AudioStreamPlayer3D = $AudioStreamPlayer3D6
-onready var audio_player_win:AudioStreamPlayer3D = $AudioStreamPlayer3D7
 onready var reload_timer:Timer = $ReloadTimer
 onready var can_be_hurt_timer:Timer = $CanBeHurtTimer
 
@@ -104,7 +103,7 @@ func item_collected():
 	points += 1
 	emit_signal("coll", points)
 	if points == 3:
-		audio_player_win.play()
+		get_tree().change_scene("res://Scenes/Win.tscn")
 	else:
 		audio_player_coll.play()
 	
