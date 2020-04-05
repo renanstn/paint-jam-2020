@@ -11,6 +11,9 @@ onready var audio_player_shoot:AudioStreamPlayer3D = $AudioStreamPlayer3D
 onready var audio_player_walk:AudioStreamPlayer3D = $AudioStreamPlayer3D2
 onready var audio_player_reloading:AudioStreamPlayer3D = $AudioStreamPlayer3D3
 onready var audio_player_hit:AudioStreamPlayer3D = $AudioStreamPlayer3D4
+onready var audio_player_coll:AudioStreamPlayer3D = $AudioStreamPlayer3D5
+onready var audio_player_game_over:AudioStreamPlayer3D = $AudioStreamPlayer3D6
+onready var audio_player_win:AudioStreamPlayer3D = $AudioStreamPlayer3D7
 onready var reload_timer:Timer = $ReloadTimer
 onready var can_be_hurt_timer:Timer = $CanBeHurtTimer
 
@@ -19,10 +22,12 @@ var can_fire:bool = true
 var reloading:bool = false
 var can_be_hurt:bool = true
 var life:int = MAX_LIFE
+var points:int = 0
 
 signal bullets(qnt)
 signal reloading(yes)
 signal life(qnt)
+signal coll(qnt)
 signal kill_something
 
 
@@ -30,6 +35,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	yield(get_tree(), "idle_frame")
 	get_tree().call_group("zombies", "set_player", self)
+	audio_player_game_over.play()
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -93,6 +99,15 @@ func take_damage():
 	audio_player_hit.play()
 	if life <= 0:
 		kill()
+		
+func item_collected():
+	points += 1
+	emit_signal("coll", points)
+	if points == 3:
+		audio_player_win.play()
+	else:
+		audio_player_coll.play()
+	
 
 func kill():
 	get_tree().reload_current_scene()

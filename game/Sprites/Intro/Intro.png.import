@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HUD - HP.png-79937417ed7d9c42640749bfb289d075.stex"
+path="res://.import/Intro.png-fb475ffab7f16caf19a929e35946b8c8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/HUD/HUD - HP.png"
-dest_files=[ "res://.import/HUD - HP.png-79937417ed7d9c42640749bfb289d075.stex" ]
+source_file="res://Sprites/Intro/Intro.png"
+dest_files=[ "res://.import/Intro.png-fb475ffab7f16caf19a929e35946b8c8.stex" ]
 
 [params]
 

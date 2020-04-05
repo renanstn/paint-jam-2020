@@ -3,8 +3,9 @@ extends KinematicBody
 
 const MOVE_SPEED = 3
 
-onready var raycast = $RayCast
-onready var anim_player = $AnimationPlayer
+onready var raycast:RayCast = $RayCast
+onready var anim_player:AnimationPlayer = $AnimationPlayer
+onready var audio_player:AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 var player = null
 var dead = false
@@ -38,6 +39,7 @@ func kill():
 	dead = true
 	$CollisionShape.disabled = true
 	anim_player.play("dying")
+	audio_player.play()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	queue_free()
