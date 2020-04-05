@@ -8,6 +8,7 @@ onready var anim_player:AnimationPlayer = $AnimationPlayer
 onready var raycast:RayCast = $RayCast
 onready var audio_player_shoot:AudioStreamPlayer3D = $AudioStreamPlayer3D
 onready var audio_player_walk:AudioStreamPlayer3D = $AudioStreamPlayer3D2
+onready var audio_player_reloading:AudioStreamPlayer3D = $AudioStreamPlayer3D3
 onready var reload_timer:Timer = $ReloadTimer
 
 var bullets:int = MAX_BULLETS
@@ -37,6 +38,7 @@ func _process(delta):
 		reloading = true
 		can_fire = false
 		emit_signal("reloading", true)
+		audio_player_reloading.play()
 		reload_timer.start()
 
 func _physics_process(delta):
@@ -82,3 +84,4 @@ func _on_ReloadTimer_timeout():
 	can_fire = true
 	reloading = false
 	emit_signal("reloading", false)
+	emit_signal("bullets", bullets)
