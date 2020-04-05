@@ -1,8 +1,8 @@
 extends Control
 
 
-onready var ammo_label:Label = $MarginContainer/HBoxContainer/AmmoBG/Ammo
-onready var kills_label:Label = $MarginContainer/HBoxContainer/KillsBG/Kills
+onready var ammo_label:Label = $MarginContainer/PanelContainer/NinePatchRect/VBoxContainer2/Ammo
+onready var kills_label:Label = $MarginContainer/PanelContainer/NinePatchRect/VBoxContainer3/Kills
 
 var kills = 0
 
