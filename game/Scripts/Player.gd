@@ -10,6 +10,7 @@ onready var raycast:RayCast = $RayCast
 onready var audio_player_shoot:AudioStreamPlayer3D = $AudioStreamPlayer3D
 onready var audio_player_walk:AudioStreamPlayer3D = $AudioStreamPlayer3D2
 onready var audio_player_reloading:AudioStreamPlayer3D = $AudioStreamPlayer3D3
+onready var audio_player_hit:AudioStreamPlayer3D = $AudioStreamPlayer3D4
 onready var reload_timer:Timer = $ReloadTimer
 onready var can_be_hurt_timer:Timer = $CanBeHurtTimer
 
@@ -89,6 +90,7 @@ func take_damage():
 	can_be_hurt_timer.start()
 	life -= 10
 	emit_signal("life", life)
+	audio_player_hit.play()
 	if life <= 0:
 		kill()
 
