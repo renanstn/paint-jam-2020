@@ -37,3 +37,7 @@ Mais informações sobre a JAM [aqui](https://itch.io/jam/paint-jam-2020)
 ![04](https://github.com/Doc-McCoy/paint-jam-2020/blob/master/screenshots/04.png)
 
 ![05](https://github.com/Doc-McCoy/paint-jam-2020/blob/master/screenshots/05.png)
+
+## Créditos
+
+Todos os sprites utilizados neste jogo foram desenhados pelo meu amigo **Matheus Poro**
