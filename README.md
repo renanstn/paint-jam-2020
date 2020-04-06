@@ -2,7 +2,7 @@
 
 Repositório do jogo criado para a Paint JAM 2020
 
-VocÊ pode baixar e jogar este jogo [aqui](https://docmccoy.itch.io/tableaoom)
+Você pode baixar e jogar este jogo [aqui](https://docmccoy.itch.io/tableaoom)
 
 A proposta da Paint JAM é desenvolver em 48 horas um game, usando como ferramenta de ilustração somente o **paint** ou outro aplicativo similar.
 
